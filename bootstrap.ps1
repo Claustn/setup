@@ -34,7 +34,7 @@ Import-Module '.\setup.psm1' -Force
 
 if ($debug -ne $true) {
     Start-Setup
-    Install-Boxstarterpackage -PackageName 
+    #Install-Boxstarterpackage -PackageName 
 
     # Clean
     Pop-Location
