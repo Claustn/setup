@@ -8,8 +8,8 @@ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable sshd
 systemctl enable dhcpcd
-useradd -m xeeynamo
-usermod -aG wheel xeeynamo
+useradd -m Claustn
+usermod -aG wheel Claustn
 systemctl enable sshd.service
 systemctl enable NetworkManager.service
 

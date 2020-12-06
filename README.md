@@ -12,11 +12,11 @@ Of course this personal repository is configured to be adapter on my specific ne
 
 From a powershell console, as an Administrator, just launch the following command:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Xeeynamo/setup/master/bootstrap.ps1'))`
+`Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Claustn/setup/master/bootstrap.ps1'))`
 
 Or if you want to avoid to launch the set-up (mostly for debugging purpose), launch the following command:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; $debug=$true; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Xeeynamo/setup/master/bootstrap.ps1'))`
+`Set-ExecutionPolicy Bypass -Scope Process -Force; $debug=$true; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Claustn/setup/master/bootstrap.ps1'))`
 
 ## Customization
 
@@ -51,4 +51,4 @@ Please refer to [customization](customization.md) to discover how to configure y
 
 ## Bonus: Install Arch Linux
 
-Just launch `curl https://raw.githubusercontent.com/Xeeynamo/setup/master/linux/pre.sh | sh`
+Just launch `curl https://raw.githubusercontent.com/Claustn/setup/master/linux/pre.sh | sh`

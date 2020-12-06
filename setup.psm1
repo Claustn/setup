@@ -1,6 +1,6 @@
 Get-ChildItem .\modules\*.psm1 | Import-Module -Force
 $global:setupPath = (Get-Location).Path
-
+$ProgressPreference = 'SilentlyContinue'
 function Start-Setup {
     Write-Output "Beginning the set-up"
 
@@ -108,12 +108,12 @@ function Start-Setup {
 }
 
 # function Set-ShellFolders {
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Desktop" "D:\Xeeynamo\Desktop"
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Music" "D:\Xeeynamo\Music"
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Pictures" "D:\Xeeynamo\Pictures"
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Video" "D:\Xeeynamo\Video"
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Personal" "D:\Xeeynamo\Documents"
-#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "{374DE290-123F-4565-9164-39C4925E467B}" "D:\Xeeynamo\Downloads"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Desktop" "D:\Claustn\Desktop"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Music" "D:\Claustn\Music"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Pictures" "D:\Claustn\Pictures"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Video" "D:\Claustn\Video"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Personal" "D:\Claustn\Documents"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "{374DE290-123F-4565-9164-39C4925E467B}" "D:\Claustn\Downloads"
 # }
 
 # function Install-Foobar2000Plugins([string]$configFileName) {
