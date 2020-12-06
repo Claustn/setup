@@ -2,41 +2,29 @@
 # Basic
 ####################
 1 googlechrome
-1 logitech-options
-1 winrar
-1 keepass
+3 logitech-options
+1 microsoft-windows-terminal
+1 powershell-core
+1 powershell-core-preview
 2 filezilla
-2 qbittorrent
-2 discord
+1 slack
+3 discord
+1 clipboardfusion
+2 powertoys
+1 zoom
+1 signal
+1 executor
 
 ####################
 # Multimedia
 ####################
-1 foobar2000
-1 spotify
-2 k-litecodecpackfull
-2 audacity
-2 vlc
-3 screentogif
-3 calibre
-3 mp3tag
-3 picard
 3 obs-studio
 
 ####################
 # Entertainment
 ####################
-2 ds4windows
-3 steam
-
-####################
-# Monitoring
-####################
-2 coretemp
-2 intel-xtu
-2 crystaldiskinfo
-2 crystaldiskmark
-2 batteryinfoview
+3 cura
+3 prusaslicer
 
 ####################
 # Tools
@@ -44,10 +32,29 @@
 1 registrychangesview
 1 winmerge
 2 sysinternals
-2 win32diskimager
-2 cheatengine
-2 windirstat
-2 bulkrenameutility
+2 rufus
+2 ilspy
+2 nmap
+2 nssm
+2 wget
+1 7-zip
+3 treesizefree
+2 everything
+1 teamviewer
+2 astrogrep
+3 markdownpad.portable
+3 putty.install
+2 winscp.install
+2 winmerge
+2 tightvnc
+3 firefox
+1 lastpass
+3 advanced-ip-scanner
+3 autoit
+3 scite4autoit3
+2 lenovo-thinkvantage-system-update
+2 beyondcompare
+
 
 ####################
 # Development
@@ -55,31 +62,20 @@
 1 git
 1 git-lfs
 1 curl
-1 cmake
-1 gitkraken
-2 dependencywalker
-2 reshack
+3 docker-desktop
 2 postman
-2 angryip
 2 fiddler
-#2 docker-cli
+
 
 ####################
 # IDE and editors
 ####################
 1 notepadplusplus
 1 vscode
+3 vscode-insiders
 
 ####################
 # Runtime
 ####################
 1 vcredist-all
-2 dotnetcore-runtime
-2 javaruntime
 
-####################
-# SDK
-####################
-1 mingw
-1 nodejs
-2 python

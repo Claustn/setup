@@ -1,6 +1,6 @@
 # Settings
-$repoUri = 'https://github.com/Xeeynamo/setup.git'
-$setupPath = "./xeeynamo-setup"
+$repoUri = 'https://github.com/claustn/setup.git'
+$setupPath = "./claustn-setup"
 
 Push-Location "/"
 

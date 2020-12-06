@@ -20,14 +20,14 @@ function Start-Setup {
     Set-ShowSearchOnTaskbar $false
     Set-SmallButtonsOnTaskbar $true
     Set-MultiMonitorTaskbarMode "2"
-    Set-DisableWindowsDefender $true
+    Set-DisableWindowsDefender $false
     Set-DarkTheme $true
     Set-DisableLockScreen $true
     Set-DisableAeroShake $true
     Set-EnableLongPathsForWin32 $true
     Set-OtherWindowsStuff
     Remove-3dObjectsFolder
-    Disable-AdministratorSecurityPrompt
+    #Disable-AdministratorSecurityPrompt
     Disable-UselessServices
     Disable-EasyAccessKeyboard
     Set-FolderViewOptions
@@ -47,7 +47,10 @@ function Start-Setup {
         "HypervisorPlatform"
         "NetFx3"
         "Microsoft-Hyper-V-All"
-        "Containers-DisposableClientVM" # Windows Sandbox
+        "Containers-DisposableClientVM"        
+        "Microsoft-Windows-Subsystem-Linux"
+        "VirtualMachinePlatform"
+         # Windows Sandbox
     ) | ForEach-Object { Enable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
 
     $chocopkgs = Get-ChocoPackages "./configs/chocopkg.txt"
@@ -55,22 +58,29 @@ function Start-Setup {
     Install-ChocoPackages $chocopkgs 2
     Install-ChocoPackages $chocopkgs 3
 
+    choco install bokken-cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/bokken-nuget -y
+    choco install yamato_cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/yamato-nuget -y
+    choco install tessen -s https://artifactory.internal.unity3d.com/api/nuget/cds-choco  -y
+    choco install openssh --params='/SSHServerFeature /SSHAgentFeature /TERM:xterm-new /AlsoLogToFile'
+    
+    Install-PSModulesv7
+    Install-PSModules
+
     Remove-DesktopIcon
     Remove-HiddenAttribute "/ProgramData"
     Remove-HiddenAttribute (Join-Path $env:USERPROFILE "AppData")
 
-    Install-Foobar2000Plugins "./configs/foobar2000plugins.txt"
     Install-VsCodeExtensions "./configs/vscode-extensions.txt"
 
     Get-ChildItem .\modules\common.psm1 | Import-Module -Force
     Get-ChildItem .\modules\*.psm1 | Import-Module -Force
     $global:setupPath = (Get-Location).Path
 
-    Install-VisualStudioProfessional (Join-VisualStudioConfigurations @(
-        "./configs/visualstudio/core.vsconfig",
-        "./configs/visualstudio/dotnet.vsconfig",
-        "./configs/visualstudio/cplusplus.vsconfig"
-    ))
+    # Install-VisualStudioProfessional (Join-VisualStudioConfigurations @(
+    #     "./configs/visualstudio/core.vsconfig",
+    #     "./configs/visualstudio/dotnet.vsconfig",
+    #     "./configs/visualstudio/cplusplus.vsconfig"
+    # ))
 
 
     # Install Dracula theme and configs for Notepad++
@@ -97,22 +107,22 @@ function Start-Setup {
     Remove-TempDirectory
 }
 
-function Set-ShellFolders {
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Desktop" "D:\Xeeynamo\Desktop"
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Music" "D:\Xeeynamo\Music"
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Pictures" "D:\Xeeynamo\Pictures"
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Video" "D:\Xeeynamo\Video"
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Personal" "D:\Xeeynamo\Documents"
-    Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "{374DE290-123F-4565-9164-39C4925E467B}" "D:\Xeeynamo\Downloads"
-}
+# function Set-ShellFolders {
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Desktop" "D:\Xeeynamo\Desktop"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Music" "D:\Xeeynamo\Music"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Pictures" "D:\Xeeynamo\Pictures"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "My Video" "D:\Xeeynamo\Video"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Personal" "D:\Xeeynamo\Documents"
+#     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "{374DE290-123F-4565-9164-39C4925E467B}" "D:\Xeeynamo\Downloads"
+# }
 
-function Install-Foobar2000Plugins([string]$configFileName) {
-    Get-Content $configFileName |
-        Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |
-        ForEach-Object {
-            Install-Foobar2000PluginFromUrl $_
-        }
-}
+# function Install-Foobar2000Plugins([string]$configFileName) {
+#     Get-Content $configFileName |
+#         Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |
+#         ForEach-Object {
+#             Install-Foobar2000PluginFromUrl $_
+#         }
+# }
 function Install-VsCodeExtensions([string]$configFileName) {
     Get-Content $configFileName |
         Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |

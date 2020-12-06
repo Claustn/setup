@@ -1,0 +1,31 @@
+PowerShellGet -Force
+PSReadLine -Force -SkipPublisherCheck -AllowPrerelease 
+Pester -Force -SkipPublisherCheck -AllowClobber
+Get-ChildItemColor -Force -SkipPublisherCheck -AllowClobber
+ISESteroids -Force -SkipPublisherCheck -AllowClobber
+oh-my-posh -Force -SkipPublisherCheck -AllowClobber
+Pansies -Force -SkipPublisherCheck -AllowClobber
+Plaster -Force -SkipPublisherCheck -AllowClobber
+platyPS -Force -SkipPublisherCheck -AllowClobber
+posh-git -Force -SkipPublisherCheck -AllowClobber
+PoshRSJob -Force -SkipPublisherCheck -AllowClobber
+PowerLine -Force -SkipPublisherCheck -AllowClobber
+PowerShellLogging -Force -SkipPublisherCheck -AllowClobber
+PSEverything -Force -SkipPublisherCheck -AllowClobber
+PSParallel -Force -SkipPublisherCheck -AllowClobber
+PSReadline -Force -SkipPublisherCheck -AllowClobber 
+PSScriptAnalyzer -Force -SkipPublisherCheck -AllowClobber
+PSSlack -Force -SkipPublisherCheck -AllowClobber
+SplitPipeline -Force -SkipPublisherCheck -AllowClobber
+VMware.PowerCLI -Force -SkipPublisherCheck -AllowClobber
+ZLocation -Force -SkipPublisherCheck -AllowClobber
+UniversalDashboard.Community -Force -AcceptLicense
+ModuleBuilder -Force -AllowClobber
+powershell-yaml -Force -AllowClobber
+PSFramework -Force -AllowClobber
+ThreadJob -Force -AllowClobber
+PSutil -Force -AllowClobber
+PSWriteHTML -AllowClobber
+GoogleCloud -AllowClobber
+PSfzf -AllowClobber
+PSEverything -AllowClobber
