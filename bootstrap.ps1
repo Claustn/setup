@@ -33,8 +33,8 @@ Push-Location $setupPath
 #Import-Module '.\setup.psm1' -Force
 
 if ($debug -ne $true) {
-    #Start-Setup
-    Install-Boxstarterpackage -PackageName "c:\claustn-setup\setup.psm1" -Credential $Cred
+    Start-Setup
+    #Install-Boxstarterpackage -PackageName "c:\claustn-setup\setup.psm1" -Credential $Cred
 
     # Clean
     Pop-Location

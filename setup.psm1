@@ -1,7 +1,7 @@
-Get-ChildItem c:\claustn-setup\modules\*.psm1 | Import-Module -Force
+Get-ChildItem .\modules\*.psm1 | Import-Module -Force
 $global:setupPath = (Get-Location).Path
 $ProgressPreference = 'SilentlyContinue'
-#function Start-Setup {
+function Start-Setup {
     Write-Output "Beginning the set-up"
 
     $global:setupPath = (Get-Location).Path
@@ -136,7 +136,7 @@ $ProgressPreference = 'SilentlyContinue'
     }
 
     Remove-TempDirectory
-#}
+}
 
 
 #--- Restore Temporary Settings ---
