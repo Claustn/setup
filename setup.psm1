@@ -1,7 +1,7 @@
 Get-ChildItem .\modules\*.psm1 | Import-Module -Force
 $global:setupPath = (Get-Location).Path
 $ProgressPreference = 'SilentlyContinue'
-function Start-Setup {
+#function Start-Setup {
     Write-Output "Beginning the set-up"
 
     $global:setupPath = (Get-Location).Path
@@ -9,7 +9,36 @@ function Start-Setup {
     # Make sure that Git Bash uses colors on Windows
     [System.Environment]::SetEnvironmentVariable("FORCE_COLOR", "true", "Machine")
 
-    Set-ShellFolders
+    function Install-VsCodeExtensions([string]$configFileName) {
+        Get-Content $configFileName |
+        Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |
+        ForEach-Object {
+            Install-VsCodeExtension $_
+        }
+    }
+    
+    function Remove-DesktopIcon() {
+        Remove-Item -Path ((Join-Path $Env:USERPROFILE "Desktop") + "/*.lnk")
+        Remove-Item -Path "/Users/Public/Desktop/*.lnk"
+    }
+    
+    function Remove-HiddenAttribute([string]$path) {
+        Set-ItemProperty $path -Name Attributes -Value Normal
+    }
+
+    #---- TEMPORARY ---
+    Disable-UAC
+    #--- Windows Settings ---
+    Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+    Set-TaskbarSmall
+
+    Enable-RemoteDesktop
+    #Set-TaskbarOptions -Size Small -Lock -Dock Bottom -Combine Always -AlwaysShowIconsOn
+    Update-ExecutionPolicy
+    Disable-GameBarTips
+    Disable-BingSearch
+
+    #Set-ShellFolders
     Install-UserProfile
     Install-StartLayout "./configs/start-layout.xml"
     Install-WindowsDeveloperMode
@@ -39,7 +68,8 @@ function Start-Setup {
         "Printing-XPSServices-Features"
         "Printing-XPSServices-Features"
         "FaxServicesClientPackage"
-    ) | ForEach-Object { Disable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
+    ) | ForEach-Object { Write-Host "Disabling Windows Feature: $_"
+        Disable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
 
     # This will fail in Windows Sandbox
     @(
@@ -50,8 +80,9 @@ function Start-Setup {
         "Containers-DisposableClientVM"        
         "Microsoft-Windows-Subsystem-Linux"
         "VirtualMachinePlatform"
-         # Windows Sandbox
-    ) | ForEach-Object { Enable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
+        # Windows Sandbox
+    ) | ForEach-Object { Write-Host "Installing Windows Feature: $_"
+        Enable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
 
     $chocopkgs = Get-ChocoPackages "./configs/chocopkg.txt"
     Install-ChocoPackages $chocopkgs 1
@@ -61,7 +92,7 @@ function Start-Setup {
     choco install bokken-cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/bokken-nuget -y
     choco install yamato_cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/yamato-nuget -y
     choco install tessen -s https://artifactory.internal.unity3d.com/api/nuget/cds-choco  -y
-    choco install openssh --params='/SSHServerFeature /SSHAgentFeature /TERM:xterm-new /AlsoLogToFile'
+    choco install openssh --params='/SSHServerFeature /SSHAgentFeature /TERM:xterm-new /AlsoLogToFile' -y
     
     Install-PSModulesv7
     Install-PSModules
@@ -92,19 +123,33 @@ function Start-Setup {
         $termColorsPath = Join-Path $global:setupPath "configs/Dracula-ColorTool.itermcolors"
         (& ./colortool "-d" "-b" "-x" $termColorsPath)
         
-        Set-PSReadlineOption -Color @{
-            "Command" = [ConsoleColor]::Green
+        Set-PSReadLineOption -Color @{
+            "Command"   = [ConsoleColor]::Green
             "Parameter" = [ConsoleColor]::Gray
-            "Operator" = [ConsoleColor]::Magenta
-            "Variable" = [ConsoleColor]::White
-            "String" = [ConsoleColor]::Yellow
-            "Number" = [ConsoleColor]::Blue
-            "Type" = [ConsoleColor]::Cyan
-            "Comment" = [ConsoleColor]::DarkCyan
+            "Operator"  = [ConsoleColor]::Magenta
+            "Variable"  = [ConsoleColor]::White
+            "String"    = [ConsoleColor]::Yellow
+            "Number"    = [ConsoleColor]::Blue
+            "Type"      = [ConsoleColor]::Cyan
+            "Comment"   = [ConsoleColor]::DarkCyan
         }
     }
 
     Remove-TempDirectory
+#}
+
+
+#--- Restore Temporary Settings ---
+Enable-UAC
+Enable-MicrosoftUpdate
+Install-WindowsUpdate -acceptEula
+
+
+wsl --set-default-version 2
+
+$computername = "clausnWin"
+if ($env:computername -ne $computername) {
+	Rename-Computer -NewName $computername -Restart
 }
 
 # function Set-ShellFolders {
@@ -123,19 +168,3 @@ function Start-Setup {
 #             Install-Foobar2000PluginFromUrl $_
 #         }
 # }
-function Install-VsCodeExtensions([string]$configFileName) {
-    Get-Content $configFileName |
-        Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |
-        ForEach-Object {
-            Install-VsCodeExtension $_
-        }
-}
-
-function Remove-DesktopIcon() {
-    Remove-Item -Path ((Join-Path $Env:USERPROFILE "Desktop") + "/*.lnk")
-    Remove-Item -Path "/Users/Public/Desktop/*.lnk"
-}
-
-function Remove-HiddenAttribute([string]$path) {
-    Set-ItemProperty $path -Name Attributes -Value Normal
-}

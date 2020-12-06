@@ -5,7 +5,7 @@
 3 logitech-options
 1 microsoft-windows-terminal
 1 powershell-core
-1 powershell-core-preview
+1 powershell-preview
 2 filezilla
 1 slack
 3 discord
