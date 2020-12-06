@@ -1,4 +1,4 @@
-Get-ChildItem .\modules\*.psm1 | Import-Module -Force
+Get-ChildItem c:\claustn-setup\modules\*.psm1 | Import-Module -Force
 $global:setupPath = (Get-Location).Path
 $ProgressPreference = 'SilentlyContinue'
 #function Start-Setup {
