@@ -34,7 +34,7 @@ Push-Location $setupPath
 
 if ($debug -ne $true) {
     #Start-Setup
-    Install-Boxstarterpackage -PackageName "$setupPath\setup.psm1" -Credential $Cred
+    Install-Boxstarterpackage -PackageName ".\setup.psm1" -Credential $Cred
 
     # Clean
     Pop-Location
