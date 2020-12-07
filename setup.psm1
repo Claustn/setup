@@ -26,17 +26,7 @@ function Start-Setup {
         Set-ItemProperty $path -Name Attributes -Value Normal
     }
 
-    #---- TEMPORARY ---
-    Disable-UAC
-    #--- Windows Settings ---
-    Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
-    Set-TaskbarSmall
 
-    Enable-RemoteDesktop
-    #Set-TaskbarOptions -Size Small -Lock -Dock Bottom -Combine Always -AlwaysShowIconsOn
-    Update-ExecutionPolicy
-    Disable-GameBarTips
-    Disable-BingSearch
 
     #Set-ShellFolders
     Install-UserProfile
@@ -136,21 +126,11 @@ function Start-Setup {
     }
 
     Remove-TempDirectory
+
+    Install-Boxstarterpackage -PackageName "c:\claustn-setup\setup.psm1" -Credential $Cred
 }
 
 
-#--- Restore Temporary Settings ---
-Enable-UAC
-Enable-MicrosoftUpdate
-Install-WindowsUpdate -acceptEula
-
-
-wsl --set-default-version 2
-
-$computername = "clausnWin"
-if ($env:computername -ne $computername) {
-	Rename-Computer -NewName $computername -Restart
-}
 
 # function Set-ShellFolders {
 #     Set-RegistryString "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" "Desktop" "D:\Claustn\Desktop"
