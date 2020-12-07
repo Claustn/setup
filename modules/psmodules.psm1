@@ -1,6 +1,7 @@
 
 function Install-PSModules {
     param ($PATH = './configs/psmodules.txt')
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
     
     Get-Content $PATH | ForEach-Object {
         Try {
@@ -19,7 +20,7 @@ function Install-PSModules {
 
 function Install-PSModulesv7 {
     param ($PATH = './configs/psmodules.txt')
-
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
     Get-Content $PATH | ForEach-Object {
         Try {
             $Cmd = "Install-Module -Name $_"
