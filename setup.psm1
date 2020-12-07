@@ -73,7 +73,9 @@ function Start-Setup {
         # Windows Sandbox
     ) | ForEach-Object { Write-Host "Installing Windows Feature: $_"
         Enable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
-
+    
+    Install-PackageProvider -Name NuGet -RequiredVersion 2.8.5.201 -Force
+    
     $chocopkgs = Get-ChocoPackages "./configs/chocopkg.txt"
     Install-ChocoPackages $chocopkgs 1
     Install-ChocoPackages $chocopkgs 2
