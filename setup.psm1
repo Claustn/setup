@@ -30,7 +30,7 @@ function Start-Setup {
 
     #Set-ShellFolders
     Install-UserProfile
-    Install-StartLayout "./configs/start-layout.xml"
+    #Install-StartLayout "./configs/start-layout.xml"
     Install-WindowsDeveloperMode
     Set-DisableAdvertisementsForConsumerEdition $true
     Disable-Telemetry

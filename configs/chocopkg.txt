@@ -2,7 +2,6 @@
 # Basic
 ####################
 1 googlechrome
-#3 logitech-options
 1 microsoft-windows-terminal
 1 powershell-core
 1 powershell-preview

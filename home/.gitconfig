@@ -1,10 +1,23 @@
-[alias]
-	h = log --graph --oneline --all --pretty=format:\"%C(yellow)%h%Creset %C(magenta)(%cr)%Creset %C(cyan)%cn%Creset %s %C(auto)%d%Creset\"
-[user]
-	name = Claus T Nielsen
-	email = clausn@unity3d.com
 [core]
+    sshCommand = 'C:/Program Files/OpenSSH-Win64/ssh.exe'
 	editor = code --wait
+	autocrlf = false
+	excludesfile = C:\\Users\\clausn\\.gitignore
+	packedGitLimit = 2048m 
+	packedGitWindowSize = 2048m 
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff  
+[credential]
+	helper = store
+[user]
+	name = Claus Thude Nielsen
+	email = clausn@unity3d.com
+[pack] 
+	deltaCacheSize = 2047m 
+	packSizeLimit = 2047m 
+	windowMemory = 2047m
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true

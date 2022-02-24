@@ -17,7 +17,6 @@ PSReadline -Force -SkipPublisherCheck -AllowClobber
 PSScriptAnalyzer -Force -SkipPublisherCheck -AllowClobber
 PSSlack -Force -SkipPublisherCheck -AllowClobber
 SplitPipeline -Force -SkipPublisherCheck -AllowClobber
-VMware.PowerCLI -Force -SkipPublisherCheck -AllowClobber
 ZLocation -Force -SkipPublisherCheck -AllowClobber
 UniversalDashboard.Community -Force -AcceptLicense
 ModuleBuilder -Force -AllowClobber
@@ -28,6 +27,5 @@ PSutil -Force -AllowClobber
 PSWriteHTML -AllowClobber
 GoogleCloud -AllowClobber
 PSfzf -AllowClobber
-PSEverything -AllowClobber
 Microsoft.PowerShell.ConsoleGuiTools
 Microsoft.PowerShell.GraphicalTools
