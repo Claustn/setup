@@ -54,6 +54,11 @@
 3 scite4autoit3
 2 lenovo-thinkvantage-system-update
 2 beyondcompare
+2 fzf 
+2 grep
+2 hxd
+
+
 
 
 ####################
@@ -66,6 +71,8 @@
 2 postman
 2 fiddler
 1 wsl2
+1 gh
+
 
 
 ####################
@@ -80,3 +87,8 @@
 ####################
 1 vcredist-all
 
+####################
+# fonts
+####################
+3 cascadia-code-nerd-font 2.1.0
+3 cascadiacode 2111.01
