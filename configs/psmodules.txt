@@ -27,5 +27,5 @@ PSutil -Force -AllowClobber
 PSWriteHTML -AllowClobber
 GoogleCloud -AllowClobber
 PSfzf -AllowClobber
-Microsoft.PowerShell.ConsoleGuiTools
+Microsoft.PowerShell.ConsoleGuiTools -AllowClobber
 Microsoft.PowerShell.GraphicalTools -AllowClobber
