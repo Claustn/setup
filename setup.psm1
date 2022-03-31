@@ -87,7 +87,7 @@ function Start-Setup {
     
     Install-PSModulesv7
     Install-PSModules
-
+    choco install wsl2 --params "/Version:2 /Retry:true"
     Remove-DesktopIcon
     Remove-HiddenAttribute "/ProgramData"
     Remove-HiddenAttribute (Join-Path $env:USERPROFILE "AppData")
