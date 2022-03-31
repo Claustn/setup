@@ -10,8 +10,10 @@ function Install-VsCodeExtension([string]$name) {
     & code "--install-extension" $name
 }
 
-function Install-VsCodeExtensions([string]$name) {
-	Get-content ./configs/vscode-extensions.txt | % {
-    & code "--install-extension" $_
-	}
-}
+function Install-VsCodeExtensions([string]$configFileName) {
+        Get-Content $configFileName |
+        Where-Object { $_[0] -ne '#' -and $_.Length -gt 0 } |
+        ForEach-Object {
+            Install-VsCodeExtension $_
+        }
+    }
