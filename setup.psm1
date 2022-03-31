@@ -76,9 +76,9 @@ Write-Host "Disabling Windows features"
     Install-PackageProvider -Name NuGet -RequiredVersion 2.8.5.201 -Force
     
     $chocopkgs = Get-ChocoPackages "./configs/chocopkg.txt"
-    #Install-ChocoPackages $chocopkgs 1
-    #Install-ChocoPackages $chocopkgs 2
-    #Install-ChocoPackages $chocopkgs 3
+    Install-ChocoPackages $chocopkgs 1
+    Install-ChocoPackages $chocopkgs 2
+    Install-ChocoPackages $chocopkgs 3
 
     choco install bokken-cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/bokken-nuget -y
     choco install yamato_cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/yamato-nuget -y
