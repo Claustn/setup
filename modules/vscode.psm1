@@ -9,3 +9,9 @@ function Install-VsCodeExtensionFromUrl([string]$name, [string]$url) {
 function Install-VsCodeExtension([string]$name) {
     & code "--install-extension" $name
 }
+
+function Install-VsCodeExtensions([string]$name) {
+	Get-content ./configs/vscode-extensions.txt | % {
+    & code "--install-extension" $_
+	}
+}
