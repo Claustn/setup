@@ -93,7 +93,7 @@ Write-Host "Disabling Windows features"
     Remove-HiddenAttribute "/ProgramData"
     Remove-HiddenAttribute (Join-Path $env:USERPROFILE "AppData")
 
-    Install-VsCodeExtension "./configs/vscode-extensions.txt"
+    Install-VsCodeExtensions "./configs/vscode-extensions.txt"
 
     Get-ChildItem .\modules\common.psm1 | Import-Module -Force
     Get-ChildItem .\modules\*.psm1 | Import-Module -Force
