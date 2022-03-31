@@ -28,4 +28,4 @@ PSWriteHTML -AllowClobber
 GoogleCloud -AllowClobber
 PSfzf -AllowClobber
 Microsoft.PowerShell.ConsoleGuiTools
-Microsoft.PowerShell.GraphicalTools
+Microsoft.PowerShell.GraphicalTools -AllowClobber
