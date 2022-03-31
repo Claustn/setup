@@ -36,7 +36,7 @@
 2 nmap
 2 nssm
 2 wget
-1 7-zip
+1 7zip.install
 3 treesizefree
 2 everything
 1 teamviewer
