@@ -53,7 +53,8 @@ function Start-Setup {
     Uninstall-StoreApps
     #Install-Ubuntu
 
-    # This will fail in Windows Sandbox
+Write-Host "Disabling Windows features"    
+# This will fail in Windows Sandbox
     @(
         "Printing-XPSServices-Features"
         "Printing-XPSServices-Features"        
