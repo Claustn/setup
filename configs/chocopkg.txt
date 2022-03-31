@@ -3,7 +3,7 @@
 ####################
 1 googlechrome
 1 powershell-core
-1 powershell-cpre --pre
+1 powershell-core --pre
 2 filezilla
 1 slack
 3 discord
