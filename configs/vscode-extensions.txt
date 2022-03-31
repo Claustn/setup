@@ -1,7 +1,6 @@
 ms-vscode.powershell
 2gua.rainbow-brackets
 burtlo.inspec
-CoenraadS.bracket-pair-colorizer-2
 DavidAnson.vscode-markdownlint
 eamodio.gitlens
 EditorConfig.EditorConfig
