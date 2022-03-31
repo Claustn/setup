@@ -51,15 +51,13 @@ function Start-Setup {
     Disable-EasyAccessKeyboard
     Set-FolderViewOptions
     Uninstall-StoreApps
-    Install-Ubuntu
+    #Install-Ubuntu
 
     # This will fail in Windows Sandbox
     @(
         "Printing-XPSServices-Features"
-        "Printing-XPSServices-Features"
-        "FaxServicesClientPackage"
-    ) | ForEach-Object { Write-Host "Disabling Windows Feature: $_"
-        Disable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
+        "Printing-XPSServices-Features"        
+    ) | ForEach-Object { Write-Host "Disabling Windows Feature: $_" ; Disable-WindowsOptionalFeature -FeatureName $_ -Online -NoRestart }
 
     # This will fail in Windows Sandbox
     @(
