@@ -71,6 +71,7 @@
 2 fiddler
 1 wsl2
 1 gh
+2 gcloudsdk
 
 
 
