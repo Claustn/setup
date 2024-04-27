@@ -1,7 +1,7 @@
 ####################
 # Basic
 ####################
-1 googlechrome
+#1 googlechrome
 1 powershell-core
 1 powershell-core --pre
 2 filezilla
@@ -10,7 +10,7 @@
 1 clipboardfusion
 2 powertoys
 1 zoom
-1 signal
+#1 signal
 1 executor
 1 tailscale
 
@@ -23,7 +23,7 @@
 # Entertainment
 ####################
 3 cura
-3 prusaslicer
+#3 prusaslicer
 
 ####################
 # Tools
@@ -38,20 +38,20 @@
 2 wget
 1 7zip.install
 3 treesizefree
-2 everything
+#2 everything
 1 teamviewer
 2 astrogrep
-3 markdownpad.portable
+#3 markdownpad.portable
 3 putty.install
 2 winscp.install
 2 winmerge
 2 tightvnc
-3 firefox
-1 lastpass
+#3 firefox
+#1 lastpass
 3 advanced-ip-scanner
-3 autoit
-3 scite4autoit3
-2 lenovo-thinkvantage-system-update
+#3 autoit
+#3 scite4autoit3
+#2 lenovo-thinkvantage-system-update
 2 beyondcompare
 2 fzf 
 2 grep
