@@ -25,23 +25,23 @@ function Uninstall-WindowsFeature($feature) {
 #    Get-AppxPackage -Name CanonicalGroupLimited.Ubuntu18.04onWindows | Remove-AppxPackage
 #}
 
-function Install-StartLayout([string]$fileName) {
-   # Unfortunately the function above imports the layout only for the "Default user"
-   Import-StartLayout -LayoutPath $fileName -MountPath $env:SystemDrive\
-   
-   # so we have to import it to the user manually.
-   $layoutDestinationPath = Join-Path $env:LOCALAPPDATA "Microsoft/Windows/Shell"
-   $dstFile = Join-Path $layoutDestinationPath "LayoutModification.xml"
-
-   New-MakeDirectoryForce $layoutDestinationPath
-   Copy-Item $fileName $dstFile -Force
-
-   # This will reset the start menu
-   reg delete "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount" /va /f
-
-   # Restart explorer to apply the changes
-   Stop-Process -ProcessName "explorer"
-}
+#function Install-StartLayout([string]$fileName) {
+#    # Unfortunately the function above imports the layout only for the "Default user"
+#    Import-StartLayout -LayoutPath $fileName -MountPath $env:SystemDrive\
+#    
+#    # so we have to import it to the user manually.
+#    $layoutDestinationPath = Join-Path $env:LOCALAPPDATA "Microsoft/Windows/Shell"
+#    $dstFile = Join-Path $layoutDestinationPath "LayoutModification.xml"
+#
+#    New-MakeDirectoryForce $layoutDestinationPath
+#    Copy-Item $fileName $dstFile -Force
+#
+#    # This will reset the start menu
+#    reg delete "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount" /va /f
+#
+#    # Restart explorer to apply the changes
+#    Stop-Process -ProcessName "explorer"
+#}
 
 function Set-RegistryValue([string]$path, [string]$key, $value) {
     reg add $path /t REG_DWORD /f /v $key /d $value
@@ -120,23 +120,23 @@ function Disable-Telemetry() {
     Set-RegistryValue "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection" "AllowTelemetry" "0"
 }
 
-function Set-DisableWindowsDefender([bool]$enable) {
-   # Disables Windows Defender. Also impacts third-party antivirus software and apps.
-   # https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/security-malware-windows-defender-disableantispyware
-   Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender" "DisableAntiSpyware" "1"
-  Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender" "DisableRoutinelyTakingAction" "1"
-   Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableBehaviorMonitoring" "1"
-   Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableOnAccessProtection" "1"
-   Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableScanOnRealtimeEnable" "1"
-}
+#function Set-DisableWindowsDefender([bool]$enable) {
+#    # Disables Windows Defender. Also impacts third-party antivirus software and apps.
+#    # https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/security-malware-windows-defender-disableantispyware
+#    Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender" "DisableAntiSpyware" "1"
+#   Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender" "DisableRoutinelyTakingAction" "1"
+#    Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableBehaviorMonitoring" "1"
+#    Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableOnAccessProtection" "1"
+#    Set-RegistryValue "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" "DisableScanOnRealtimeEnable" "1"
+#}
 
-function Set-DarkTheme([bool]$enable) {
-   Set-RegistryBool "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" ($enable -eq -$false)
-}
+#function Set-DarkTheme([bool]$enable) {
+#    Set-RegistryBool "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" ($enable -eq -$false)
+#}
 
-function Set-ColorTheme([string]$color) {
-   Set-RegistryBool "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" !$enable
-}
+#function Set-ColorTheme([string]$color) {
+#    Set-RegistryBool "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" !$enable
+#}
 
 function Disable-AdministratorSecurityPrompt() {
     # This option SHOULD be used to disable the automatic detection of installation packages that require elevation to install.

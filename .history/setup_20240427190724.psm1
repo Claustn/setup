@@ -34,7 +34,7 @@ function Start-Setup {
     Install-WindowsDeveloperMode
     Set-DisableAdvertisementsForConsumerEdition $true
     Disable-Telemetry
-    #Disable-IntelPowerThrottling
+    Disable-IntelPowerThrottling
     Set-HidePeopleOnTaskbar $true
     Set-ShowSearchOnTaskbar $false
     Set-SmallButtonsOnTaskbar $true
@@ -47,8 +47,8 @@ function Start-Setup {
     Set-OtherWindowsStuff
     Remove-3dObjectsFolder
     #Disable-AdministratorSecurityPrompt
-    #Disable-UselessServices
-    #Disable-EasyAccessKeyboard
+    Disable-UselessServices
+    Disable-EasyAccessKeyboard
     Set-FolderViewOptions
     Uninstall-StoreApps
     #Install-Ubuntu
