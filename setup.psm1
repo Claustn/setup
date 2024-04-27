@@ -80,9 +80,6 @@ Write-Host "Disabling Windows features"
     Install-ChocoPackages $chocopkgs 2
     Install-ChocoPackages $chocopkgs 3
 
-    choco install bokken-cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/bokken-nuget -y
-    choco install yamato_cli --Source https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/nuget/yamato-nuget -y
-    choco install -s https://artifactory.prd.it.unity3d.com/artifactory/api/nuget/unity-choco-local tessen -y
     nssm remove  ssh-agent confirm
     choco install openssh --pre --params='/SSHServerFeature /SSHAgentFeature /TERM:xterm-new /AlsoLogToFile' -y --force
     
